@@ -2,7 +2,7 @@ param()
 
 $Root = "$($PWD)";
 
-Expand-Archive -Path "$($PWD)\Penumbra.zip" -DestinationPath "$($PWD)";
+Expand-Archive -Path "$($PWD)\Penumbra.zip" -DestinationPath "$($PWD)\Penumbra";
 
 New-Item -ItemType Directory -Path "$($PWD)\Temp";
 

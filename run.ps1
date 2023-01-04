@@ -128,10 +128,10 @@ $MetaJson.Website = "$($Website)";
 $MetaJson.Tags = $Tags;
 
 if ($null -ne $DescriptionPath) {
-  $MetaJson.Description = "$($Desctiption)";
+  $MetaJson.Description = "$($Description)";
 }
-elseif (($null -ne $DescriptionPath) -and (Test-Path -LiteralPath $DesctiptionPath -PathType Leaf)) {
-  $MetaJson.Description = ((Get-Content -LiteralPath $DesctiptionPath) -replace '\n', '\\n');
+elseif (($null -ne $DescriptionPath) -and (Test-Path -LiteralPath $DescriptionPath -PathType Leaf)) {
+  $MetaJson.Description = ((Get-Content -LiteralPath $DescriptionPath) -replace '\n', '\\n');
 }
 else {
   $MetaJson.Description = "";
