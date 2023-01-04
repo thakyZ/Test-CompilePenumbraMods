@@ -26,11 +26,11 @@ param(
   # The mod description in a string.
   [Parameter(Mandatory = $False, Position = 6, ValueFromPipeline = $False, HelpMessage = "The mod description in a string.")]
   [string]
-  $Desctiption = $null,
+  $Description = $null,
   # The mod description in a file.
   [Parameter(Mandatory = $False, Position = 7, ValueFromPipeline = $False, HelpMessage = "The mod description in a file.")]
   [string]
-  $DesctiptionPath = $null
+  $DescriptionPath = $null
 )
 
 $Match = ".+$($Name).+";
