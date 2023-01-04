@@ -1,0 +1,58 @@
+name: Build
+# Put your personal access token in a repository secret named PAT for cross-repository access
+on:
+  workflow_dispatch:
+
+env:
+  PROJECT_NAME: "[Dekken] Neir_Sage"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.6.0
+        with:
+          submodules: recursive
+
+      - name: Run Powershell Script
+        run: .\setup.ps1
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: ${{env.PROJECT_NAME}}
+          path: "D:/a/${{ github.event.repository.name }}/${{ github.event.repository.name }}/${{env.PROJECT_NAME}}.pmp"
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: windows-latest
+    if: "contains(toJSON(github.event.commits.*.message), '[PUSH]') && github.event_name == 'push'"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2.6.0
+        with:
+          fetch-depth: 0
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3.0.1
+        id: download
+        with:
+          name: "${{env.PROJECT_NAME}}"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          name: ${{ env.PROJECT_NAME }} ${{steps.version.outputs.prop}}
+          tag_name: "_temp"
+          body: ${{ github.events.commits[0].message }}
+          files: ${{ steps.download.outputs.download-path }}\latest.zip
+
+      - name: Trigger plugin repo update
+        uses: peter-evans/repository-dispatch@v2.1.1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{env.PLUGIN_REPO}}
+          event-type: new-release
