@@ -8,6 +8,8 @@ New-Item -ItemType Directory -Path "$($PWD)\Temp";
 
 Move-Item -Path "$($PWD)\run.ps1" -Destination "$($PWD)\Temp\run.ps1";
 
+Get-ChildItem -Path $Root;
+
 Set-Location -Path "$($PWD)\Temp";
 
 & "$($PWD)\run.ps1" -Name "NierSage-" -OutputName "`[Dekken`] Neir_Sage" -Version "1.0.0" -Website "" -Tags @() -Description "";
