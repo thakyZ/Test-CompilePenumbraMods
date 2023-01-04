@@ -12,23 +12,23 @@ param(
   [string]
   $Author,
   # The mod version.
-  [Parameter(Mandatory = $False, Position = 2, ValueFromPipeline = $False, HelpMessage = "The mod version.")]
+  [Parameter(Mandatory = $False, Position = 3, ValueFromPipeline = $False, HelpMessage = "The mod version.")]
   [string]
   $Version,
   # The mod website.
-  [Parameter(Mandatory = $False, Position = 2, ValueFromPipeline = $False, HelpMessage = "The mod website.")]
+  [Parameter(Mandatory = $False, Position = 4, ValueFromPipeline = $False, HelpMessage = "The mod website.")]
   [string]
   $Website,
   # The mod tags.
-  [Parameter(Mandatory = $False, Position = 2, ValueFromPipeline = $False, HelpMessage = "The mod tags.")]
+  [Parameter(Mandatory = $False, Position = 5, ValueFromPipeline = $False, HelpMessage = "The mod tags.")]
   [string[]]
   $Tags,
   # The mod description in a string.
-  [Parameter(Mandatory = $False, Position = 2, ValueFromPipeline = $False, HelpMessage = "The mod description in a string.")]
+  [Parameter(Mandatory = $False, Position = 6, ValueFromPipeline = $False, HelpMessage = "The mod description in a string.")]
   [string]
   $Desctiption = $null,
   # The mod description in a file.
-  [Parameter(Mandatory = $False, Position = 2, ValueFromPipeline = $False, HelpMessage = "The mod description in a file.")]
+  [Parameter(Mandatory = $False, Position = 7, ValueFromPipeline = $False, HelpMessage = "The mod description in a file.")]
   [string]
   $DesctiptionPath = $null
 )
