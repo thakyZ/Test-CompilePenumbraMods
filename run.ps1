@@ -33,9 +33,11 @@ param(
   $DescriptionPath = $null
 )
 
-$Match = ".+$($Name).+";
+$Match = ".*$($Name)*";
 
-Copy-Item -Recurse -LiteralPath (Get-ChildItem -Path "$($PWD)\..\Penumbra" | Sort-Object -Property LastWriteTimeUtc | Where-Object { $_.BaseName -match $Match } ) -Destination "$($PWD)\..\Temp\";
+$FoundNames = (Get-ChildItem -Path "$($PWD)\..\Penumbra" | Sort-Object -Property LastWriteTimeUtc | Where-Object { $_.BaseName -match $Match } );
+
+Copy-Item -Recurse -Path $FoundNames -Destination "$($PWD)\..\Temp\";
 
 $ModCompiledName = "Temp";
 
@@ -46,9 +48,9 @@ else {
   $ModCompiledName = $OutputName;
 }
 
-$MatchFileName = "$($Name)[-_]"
+$MatchFileName = ".*$($Name)"
 
-Get-ChildItem -Path "$($PWD)" | Where-Object { $_.Name -ne "$($ModCompiledName)" } | ForEach-Object { Copy-Item -LiteralPath $_.Name -Destination "$($PWD)\$($ModCompiledName)\$(($_.Name -replace $MatchFileName, '').Split('-') -join '\')" }
+Get-ChildItem -Path "$($PWD)" -Directory | Where-Object { $_.Name -ne "$($ModCompiledName)" } | ForEach-Object { Copy-Item -LiteralPath $_.Name -Destination "$($PWD)\$($ModCompiledName)\$(($_.Name -replace $MatchFileName, '').Split('-') -join '\')" }
 
 $PathNameRegex = "$($PWD)\\$($ModCompiledName -replace "/([[\]])/gi", '\$1')\\";
 

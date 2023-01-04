@@ -16,14 +16,19 @@ jobs:
         with:
           submodules: recursive
 
+      #- name: Setup Powershell Script
+      #  run: .\setup.ps1 -Part 0
       - name: Run Powershell Script
         run: .\setup.ps1
+      #  run: .\run.ps1 -Name "NierSage\-" -OutputName "`[Dekken`] Neir_Sage" -Version "1.0.0" -Website "" -Tags @() -Description ""
+      #- name: End Powershell Script
+      #  run: .\setup.ps1 -Part 1
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3.1.1
         with:
           name: ${{env.PROJECT_NAME}}
-          path: "D:/a/${{ github.event.repository.name }}/${{ github.event.repository.name }}/${{env.PROJECT_NAME}}.pmp"
+          path: "${{env.PROJECT_NAME}}.pmp"
           if-no-files-found: error
 
   release:
