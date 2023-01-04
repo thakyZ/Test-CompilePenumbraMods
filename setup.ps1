@@ -10,7 +10,7 @@ Move-Item -Path "$($PWD)\run.ps1" -Destination "$($PWD)\Temp\run.ps1";
 
 Set-Location -Path "$($PWD)\Temp";
 
-& "$($PWD)\run.ps1" -Name "NierSage-" -OutputName "`[Dekken`] Neir_Sage" -Version "1.0.0" -Website "" -ModTags @() -Description "";
+& "$($PWD)\run.ps1" -Name "NierSage-" -OutputName "`[Dekken`] Neir_Sage" -Version "1.0.0" -Website "" -Tags @() -Description "";
 
 $ExitCode = $LASTEXITCODE;
 
