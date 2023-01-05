@@ -41,7 +41,7 @@ Copy-Item -Recurse -Path $FoundNames -Destination "$($PWD)\..\Temp\";
 
 $ModCompiledName = "Temp";
 
-if ($null -ne $OutputName) {
+if ($null -eq $OutputName) {
   $ModCompiledName = (Read-Host -Prompt "Compiled Mod Name:")
 }
 else {
@@ -54,6 +54,7 @@ Get-ChildItem -Path "$($PWD)" -Directory | Where-Object { $_.Name -ne "$($ModCom
 
 $PathNameRegex = "$($PWD)\\$($ModCompiledName -replace "/([[\]])/gi", '\$1')\\";
 
+Get-ChildItem "$($PWD)\..\Temp\";
 $ModCompiledDir = (New-Item -ItemType Directory -Path "$($PWD)\$($ModCompiledName)");
 
 $Items = (Get-ChildItem -LiteralPath "$($PWD)\$($ModCompiledName)" -Recurse -Depth 4 -File -Include "*.json")

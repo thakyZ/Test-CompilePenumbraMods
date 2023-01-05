@@ -8,7 +8,7 @@ $Root = "$($PWD)";
 
 Expand-Archive -Path "$($PWD)\Penumbra.zip" -DestinationPath "$($PWD)\Penumbra";
 
-New-Item -ItemType Directory -Path "$($PWD)\Temp";
+New-Item -ItemType Directory -Path "$($PWD)\Temp" >$null;
 
 Move-Item -Path "$($PWD)\run.ps1" -Destination "$($PWD)\Temp\run.ps1";
 
